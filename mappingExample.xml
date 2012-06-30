@@ -1,0 +1,46 @@
+<graphModel>
+    <node type="customer" index="customerIndex">
+        <table name="customer">
+            <field name="id" property="id" indexKey="true"/>
+            <field name="name" property="name"/>
+            <field name="locationId" relationship="locatedIn" nodeType="location" direction="outgoing"/>
+        </table>
+    </node>
+    <node type="location" index="locationIndex">
+        <table name="location">
+            <field name="locationId" property="id" indexKey="true"/>
+            <field name="name" property="name"/>
+        </table>
+    </node>
+    <node type="offer" index="offerIndex">
+        <table name="offer">
+            <field name="id" indexKey="true"/>
+            <field name="name"/>
+            <!--If property isn't specified, the property name is the same as the field name-->
+            <field name="startdate"/>
+            <field name="enddate"/>
+            <field name="merchantId" relationship="hasOffer" direction="incoming" nodeType="merchant"/>
+        </table>
+    </node>
+    <node type="merchant" index="merchantIndex">
+        <table name="merchant">
+            <field name="id" indexKey="true"/>
+            <field name="name"/>
+        </table>
+    </node>
+    <relationship type="offeredTo">
+        <table name="customer_offer">
+            <field name="offerId" position="startNode" nodeType="offer"/>
+            <field name="customerId" position="endNode" nodeType="customer"/>
+            <field name="dateOffered" property="dateOffered"/>
+            <!--property on a relation -->
+            <field name="redeemed" property="redeemed"/>
+        </table>
+    </relationship>
+    <relationship type="forwardsOffer">
+        <table name="customer_offer">
+            <field name="customerId" position="endNode" nodeType="customer"/>
+            <field name="forwardedBy" position="startNode" nodeType="customer"/>
+        </table>
+    </relationship>
+</graphModel>
