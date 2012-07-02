@@ -35,4 +35,21 @@ public class MappedNode {
     public void setTable(Table table) {
         this.table = table;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MappedNode that = (MappedNode) o;
+
+        if (!nodeType.equals(that.nodeType)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return nodeType.hashCode();
+    }
 }

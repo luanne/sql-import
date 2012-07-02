@@ -9,7 +9,7 @@ package com.neo4j.sqlimport.mapper;
 public class RelationshipColumn extends Column{
 
     private String relationshipType;
-    private String isStartNode;
+    private boolean isStartNode;
     private String columnNodeType;
 
     public String getRelationshipType() {
@@ -20,11 +20,11 @@ public class RelationshipColumn extends Column{
         this.relationshipType = relationshipType;
     }
 
-    public String getStartNode() {
+    public boolean isStartNode() {
         return isStartNode;
     }
 
-    public void setStartNode(String startNode) {
+    public void setStartNode(boolean startNode) {
         isStartNode = startNode;
     }
 
